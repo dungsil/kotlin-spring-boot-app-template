@@ -1,0 +1,27 @@
+name: "🏗"
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.kt"
+      - "**/*.gradle"
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+      - name: Setup Java environment
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+      - name: Add execute permission to gradle wrapper
+        run: chmod +x ./gradlew
+      - name: Build with Gradle
+        run: gradlew build
+      - name: Test with Gradle
+        run: gradlew test
