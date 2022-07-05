@@ -1,0 +1,14 @@
+.env:
+  prefix: ""
+  filename: .env.dev
+
+logging:
+  level:
+    root: INFO
+    packagename: DEBUG
+
+spring:
+  datasource:
+    url: ${APP_JDBC_URL}
+    username: ${APP_JDBC_USERNAME}
+    password: ${APP_JDBC_PASSWORD}

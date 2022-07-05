@@ -1,8 +1,14 @@
 plugins {
+  // Kotlin
   alias(lib.plugins.kotlin)
+  alias(lib.plugins.kotlin.spring)
+
+  // Spring boot
+  alias(lib.plugins.spring.boot)
+  alias(lib.plugins.spring.dependency.management)
 }
 
-group = ""
+group = "packagename"
 version = "0.0.0"
 
 repositories {
@@ -10,13 +16,16 @@ repositories {
 }
 
 dependencies {
+  developmentOnly(lib.bundles.development)
   implementation(lib.bundles.compile)
+  runtimeOnly(lib.bundles.jdbc)
   testImplementation(lib.bundles.test)
 }
 
 compileKotlin {
   kotlinOptions {
     jvmTarget = "17"
+    freeCompilerArgs = ["-Xjsr305=strict"]
   }
 }
 

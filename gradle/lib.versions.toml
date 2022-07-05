@@ -2,14 +2,36 @@
 kotlin = "1.7.0"
 kotlin-logging = "2.1.20"
 
+spring-dotenv = "2.5.4"
+spring-boot = "2.7.1"
+spring-dependency-management = "1.0.12.RELEASE"
+
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
 kotlin-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.ref = "kotlin-logging" }
 
+spring-dotenv = { module = "me.paulschwarz:spring-dotenv", version.ref = "spring-dotenv" }
+spring-boot = { module = "org.springframework.boot:spring-boot-starter" }
+spring-boot-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
+spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+jdbc-postgresql = { module = "org.postgresql:postgresql" }
+jdbc-mysql = { module = "mysql:mysql-connector-java" }
+jdbc-h2 = { module = "com.h2database:h2" }
+
 [bundles]
-compile = ["kotlin-stdlib", "kotlin-logging"]
-test = ["kotlin-test"]
+development = ["spring-boot-devtools"]
+compile = ["kotlin-stdlib", "kotlin-reflect", "kotlin-logging", "spring-dotenv", "spring-boot", "spring-boot-jpa"]
+jdbc = ["jdbc-postgresql", "jdbc-mysql", "jdbc-h2"]
+test = ["kotlin-test", "spring-boot-test"]
